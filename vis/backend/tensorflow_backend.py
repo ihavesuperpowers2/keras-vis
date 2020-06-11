@@ -92,7 +92,7 @@ def modify_model_backprop(model, backprop_modifier):
         modifier_fn(backprop_modifier)
 
         # 3. Create graph under custom context manager.
-        with tf.get_default_graph().gradient_override_map({'Relu': backprop_modifier}):
+        with tf.compat.v1.get_default_graph().gradient_override_map({'Relu': backprop_modifier}):
             #  This should rebuild graph with modifications.
             modified_model = load_model(model_path)
 
